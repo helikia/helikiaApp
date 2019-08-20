@@ -1,6 +1,7 @@
 # helikia-app
+[![CircleCI](https://circleci.com/gh/helikia/helikiaApp/tree/master.svg?style=svg)](https://circleci.com/gh/helikia/helikiaApp/tree/master)
 
-> a beautiful project
+> Helikia is a web application which compares retirement homes
 
 ## Build Setup
 
@@ -18,5 +19,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
