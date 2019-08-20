@@ -1,4 +1,4 @@
-# helikia-app
+# Helikia
 [![CircleCI](https://circleci.com/gh/helikia/helikiaApp/tree/master.svg?style=svg)](https://circleci.com/gh/helikia/helikiaApp/tree/master)
 
 > Helikia is a web application which compares retirement homes
