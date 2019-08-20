@@ -1,0 +1,26 @@
+{
+  "name": "helikiaapp",
+  "version": "1.0.0",
+  "description": "Helikia Application, it's a wonderfull app to compare and choose your EHPAD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helikia/helikiaApp.git"
+  },
+  "keywords": [
+    "javascript",
+    "nodejs",
+    "vuejs",
+    "webpack",
+    "ES6"
+  ],
+  "author": "Matthieu Jacques",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/helikia/helikiaApp/issues"
+  },
+  "homepage": "https://github.com/helikia/helikiaApp#readme"
+}
