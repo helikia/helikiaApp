@@ -38,10 +38,10 @@ module.exports = {
   /*
    ** Port
    */
-  server: {
-    port: 8000, // par défaut: 3000
-    host: '0.0.0.0', // par défaut: localhost
-  },
+  // server: {
+  //   port: 8000, // par défaut: 3000
+  //   host: '0.0.0.0', // par défaut: localhost
+  // },
   /*
    ** Nuxt.js modules
    */
