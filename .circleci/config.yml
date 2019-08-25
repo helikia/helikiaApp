@@ -14,7 +14,8 @@ jobs:
             - node_modules
           key: npm-{{ checksum "package.json" }}
       - run: yarn lint
-      - run: yarn test
+      - run: yarn test:e2e
+      - run: yarn test:unit
   linter:
     docker:
       - image: circleci/node:10.13
@@ -29,7 +30,7 @@ jobs:
             - node_modules
           key: npm-{{ checksum "package.json" }}
       - run: yarn lint
-  test:
+  test:e2e:
     docker:
       - image: circleci/node:10.13
     steps:
@@ -42,7 +43,21 @@ jobs:
           paths:
             - node_modules
           key: npm-{{ checksum "package.json" }}
-      - run: yarn test
+      - run: yarn test:e2e
+test:unit:
+  docker:
+    - image: circleci/node:10.13
+  steps:
+    - checkout
+    - restore_cache:
+        keys:
+          - npm-{{ checksum "package.json" }}
+    - run: yarn install
+    - save_cache:
+        paths:
+          - node_modules
+        key: npm-{{ checksum "package.json" }}
+    - run: yarn test:unit
 
 workflows:
   version: 2
