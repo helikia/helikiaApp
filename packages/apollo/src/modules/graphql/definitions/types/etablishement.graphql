@@ -1,6 +1,0 @@
-type Etablishement @model {
-    _id: ID! @isUnique
-    name: String!
-    street: String!
-    cp: String!
-}

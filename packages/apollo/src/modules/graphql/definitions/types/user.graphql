@@ -1,8 +1,0 @@
-type User @model {
-    _id: ID! @isUnique
-    firstName: String
-    lastName: String
-    email: String!
-    password: String!
-    role: String!
-}
