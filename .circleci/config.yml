@@ -65,4 +65,5 @@ workflows:
     jobs:
       - build
       - linter
-      - test 
+      - test:unit
+      - test:e2e
