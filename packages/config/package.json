@@ -3,5 +3,9 @@
   "version": "1.0.0",
   "description": "Configuration package",
   "private": true,
-  "main": "./shared"
+  "main": "./shared", 
+  "dependencies": {
+    "deepmerge": "^2.2.1",
+    "lodash": "^4.17.10"
+  }
 }
