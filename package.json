@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node server.js",
+    "start": "node --experimental-modules ./packages/api",
     "serve": "vue-cli-service serve",
     "dev:back": "nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
     "build": "vue-cli-service build",
