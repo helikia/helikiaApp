@@ -1,0 +1,16 @@
+{
+  "name": "@helikia/api",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "src/api.mjs",
+  "scripts": {
+    "start": "node --experimental-modules .",
+    "dev": "nodemon --experimental-modules .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "apollo-server": "^2.9.0",
+    "deepmerge": "^4.0.0",
+    "mongodb": "^3.3.1"
+  }
+}
