@@ -131,14 +131,24 @@
     "@types/node" "*"
 
 "@types/graphql-upload@^8.0.0":
+<<<<<<< HEAD
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@types/graphql-upload/-/graphql-upload-8.0.2.tgz#88d8fc4a30c681d57592f1deca720d19c50b50f6"
   integrity sha512-7pfyXHmfa2W/hrM2Q++V7U7zdgSQj8i+wuuTV9FxOI0puKYcBB1GU2DMa/WPbnDPec/1CGWMIPVmhpzZ1ItVlA==
+=======
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@types/graphql-upload/-/graphql-upload-8.0.3.tgz#b371edb5f305a2a1f7b7843a890a2a7adc55c3ec"
+  integrity sha512-hmLg9pCU/GmxBscg8GCr1vmSoEmbItNNxdD5YH2TJkXm//8atjwuprB+xJBK714JG1dkxbbhp5RHX+Pz1KsCMA==
+>>>>>>> fix error circle-co
   dependencies:
     "@types/express" "*"
     "@types/fs-capacitor" "*"
     "@types/koa" "*"
+<<<<<<< HEAD
     graphql "14.5.0"
+=======
+    graphql "^14.5.3"
+>>>>>>> fix error circle-co
 
 "@types/http-assert@*":
   version "1.5.1"
@@ -869,6 +879,7 @@ graphql-upload@^8.0.2:
     http-errors "^1.7.2"
     object-path "^0.11.4"
 
+<<<<<<< HEAD
 graphql@14.5.0:
   version "14.5.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.5.0.tgz#4801e6460942c9c591944617f6dd224a9e531520"
@@ -876,6 +887,8 @@ graphql@14.5.0:
   dependencies:
     iterall "^1.2.2"
 
+=======
+>>>>>>> fix error circle-co
 graphql@^14.5.3:
   version "14.5.3"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-14.5.3.tgz#e025851cc413e153220f4edbbb25d49f55104fa0"

@@ -34,6 +34,11 @@ const defaultOptions = {
   },
 };
 
+function isUnauthorizedError(error) {
+  const { graphQLErrors } = error;
+  return (graphQLErrors && graphQLErrors.some(e => e.message === 'Unauthorized'));
+}
+
 // Call this in the Vue app file
 export function createProvider(options = {}, { router }) {
   // Create apollo client
@@ -68,9 +73,4 @@ export function createProvider(options = {}, { router }) {
     },
   });
   return apolloProvider;
-}
-
-function isUnauthorizedError(error) {
-  const { graphQLErrors } = error;
-  return (graphQLErrors && graphQLErrors.some(e => e.message === 'Unauthorized'));
 }
