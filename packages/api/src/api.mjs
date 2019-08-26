@@ -22,7 +22,7 @@ const manifest = {
           }, 'stdout'],
         },
       },
-    },{
+    }, {
       plugin: mongodbPlugin,
       options: config.mongodb,
     },

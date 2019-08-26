@@ -1,4 +1,5 @@
 import mongodb from 'mongodb';
+import fixtures from './fixtures/db.json';
 
 export default {
   name: 'mongodb',
@@ -8,8 +9,13 @@ export default {
       useUnifiedTopology: true,
     });
     server.log('info', `Database connected to: ${options.url}`);
-    
     const db = client.db();
+
+    server.log(db.collection('etablishement'));
+    db.collection('etablishement').insertOne(fixtures, (err, res) => {
+      if (err) throw err;
+      console.log('Document inserted');
+    });
 
     server.expose('registerModel', (name) => {
       server.expose(name, new Proxy({}, {

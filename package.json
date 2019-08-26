@@ -6,6 +6,7 @@
     "start": "node --experimental-modules ./packages/api",
     "serve": "vue-cli-service serve",
     "dev:back": "nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
+    "loadFixtures": "nodemon --experimental-modules ./packages/api/src/modules/mongodb/fixtures/fixtures.mjs",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
