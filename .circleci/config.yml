@@ -13,10 +13,7 @@ jobs:
           paths:
             - node_modules
           key: npm-{{ checksum "package.json" }}
-      - run: yarn lint
-      - run: yarn test:e2e
-      - run: yarn test:unit
-  linter:
+      - run: yarn build
     docker:
       - image: circleci/node:10.13
     steps:
@@ -58,12 +55,11 @@ test:unit:
           - node_modules
         key: npm-{{ checksum "package.json" }}
     - run: yarn test:unit
-
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build
       - linter
-      - test:unit
-      - test:e2e
+      # - test:unit
+      # - test:e2e
