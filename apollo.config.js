@@ -40,7 +40,7 @@ export function createProvider(options = {}, { router }) {
   const { apolloClient, wsClient } = createApolloClient({
     ...defaultOptions,
     ...options,
-  })
+  });
   apolloClient.wsClient = wsClient;
 
   // Create vue apollo provider
@@ -63,7 +63,7 @@ export function createProvider(options = {}, { router }) {
           });
         }
       } else {
-        console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
+        console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message);
       }
     },
   });
