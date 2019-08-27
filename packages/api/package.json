@@ -10,14 +10,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.9.0",
-    "apollo-server-hapi": "^2.9.0",
     "deepmerge": "^4.0.0",
-    "glue": "^6.0.0",
-    "good": "^8.1.2",
-    "good-console": "^8.0.0",
-    "good-squeeze": "^5.1.0",
-    "graphql": "^14.5.3",
-    "hapi": "^18.1.0",
     "mongodb": "^3.3.1"
   }
 }

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "serve": "vue-cli-service serve",
-    "dev:back": "nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
+    "dev:back": "APP_ENV=dev nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
