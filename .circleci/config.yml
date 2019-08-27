@@ -1,65 +1,83 @@
 version: 2
 jobs:
+  checkBranch:
+    docker:
+      - image: circleci/node:10.6
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-{{ checksum "package.json" }}
+      - run: |
+           mkdir -p /tmp/test-results/rebase-status
+            PR_NUMBER=${CI_PULL_REQUEST//*pull\//}
+            CI_HEAD_BRANCH=${CI_HEAD_BRANCH-"master"}
+            err=0
+            # Set git identity
+            git config user.email "circleci@wework.com"
+            git config user.name "circleci"
+            if [ -z "$PR_NUMBER" ]; then
+                echo --> Not merging with master
+                exit
+            fi
+            # Update the CI_HEAD_BRANCH (ie. master/develop)
+            (set -x && git fetch -f origin $CI_HEAD_BRANCH) || err=$?
+            # Find current head from the HEAD_BRANCH
+            # Thanks to this: https://stackoverflow.com/questions/30177047/how-to-pragmatically-check-with-bash-script-if-a-branch-in-git-needs-to-be-rebas
+            hash1=$(git show-ref --heads -s $CI_HEAD_BRANCH)
+            hash2=$(git merge-base $CI_HEAD_BRANCH $CIRCLE_BRANCH)
+            if [[ "${hash1}" = "${hash2}" ]]; then
+              echo "OK: Already rebased" > /tmp/test-results/rebase-status/rebase-status.txt
+            else
+              echo "FAIL: Rebase is required" > /tmp/test-results/rebase-status/rebase-status.txt
+              exit 1
+            fi
+      - save_cache:
+          paths:
+            - node_modules
+          key: npm-{{ checksum "package.json" }}
   build:
     docker:
-      - image: circleci/node:10.13
+      - image: circleci/node:10.6
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - npm-{{ checksum "package.json" }}
       - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: npm-{{ checksum "package.json" }}
       - run: yarn build
+  linter:
     docker:
-      - image: circleci/node:10.13
+      - image: circleci/node:10.6
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - npm-{{ checksum "package.json" }}
       - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: npm-{{ checksum "package.json" }}
       - run: yarn lint
+  test:unit:
+    docker:
+      - image: circleci/node:10.6
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn test:unit
   test:e2e:
     docker:
-      - image: circleci/node:10.13
+      - image: cypress/base:8
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - npm-{{ checksum "package.json" }}
       - run: yarn install
-      - save_cache:
-          paths:
-            - node_modules
-          key: npm-{{ checksum "package.json" }}
-      - run: yarn test:e2e
-test:unit:
-  docker:
-    - image: circleci/node:10.13
-  steps:
-    - checkout
-    - restore_cache:
-        keys:
-          - npm-{{ checksum "package.json" }}
-    - run: yarn install
-    - save_cache:
-        paths:
-          - node_modules
-        key: npm-{{ checksum "package.json" }}
-    - run: yarn test:unit
+      - run: yarn test:e2e:prod
 workflows:
   version: 2
-  build-deploy:
+  build-and-deploy:
     jobs:
-      - build
-      - linter
-      # - test:unit
-      # - test:e2e
+      - checkBranch
+      - build:
+          requires:
+            - checkBranch
+      - linter:
+          requires:
+            - checkBranch
+      - test:unit:
+          requires:
+            - checkBranch
+      - test:e2e:
+          requires:
+            - checkBranch
