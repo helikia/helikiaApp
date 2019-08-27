@@ -5,24 +5,15 @@
   "scripts": {
     "start": "node server.js",
     "serve": "vue-cli-service serve",
-    "dev:back": "APP_ENV=dev nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "apollo-boost": "^0.4.4",
-    "apollo-cache-inmemory": "^1.6.3",
-    "apollo-client": "^2.6.4",
-    "apollo-link": "^1.2.12",
-    "apollo-link-http": "^1.5.15",
     "core-js": "^2.6.5",
     "express": "^4.17.1",
-    "graphql": "^14.5.3",
-    "graphql-tag": "^2.10.1",
     "vue": "^2.6.10",
-    "vue-apollo": "^3.0.0-rc.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
@@ -39,7 +30,6 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^8.1.5",
-    "vue-cli-plugin-apollo": "^0.21.0",
     "vue-template-compiler": "^2.6.10"
   }
 }
