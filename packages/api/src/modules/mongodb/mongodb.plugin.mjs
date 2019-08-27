@@ -5,7 +5,7 @@ export default {
   async register(server, options) {
     const client = await mongodb.MongoClient.connect(options.url, { 
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     });
     server.log('info', `Database connected to: ${options.url}`);
     
@@ -15,6 +15,7 @@ export default {
       server.expose(name, new Proxy({}, {
         get: (_, operation) => {
           if (operation === 'findById') {
+            server.log( 'name');
             return id => db.collection(name).findOne({ _id: new mongodb.ObjectID() });
           }
 
