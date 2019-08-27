@@ -38,6 +38,7 @@ const manifest = {
 const createServer = async () => {
   const server = await Glue.compose(manifest);
   await server.start();
+  server.log('info', `Graphql started on http://localhost:${server.info.port}/graphql`);
   server.log('info', `Server started on port ${server.info.port}`);
 };
 
