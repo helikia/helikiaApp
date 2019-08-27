@@ -6,14 +6,10 @@
         helikia-app
       </h1>
       <h2 class="subtitle">
-        A beautifull project to search EHPAD all around France
+        a beautiful project
       </h2>
       <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >
+        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
           Documentation
         </a>
         <a
