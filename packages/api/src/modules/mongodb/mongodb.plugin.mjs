@@ -11,10 +11,10 @@ export default {
     server.log('info', `Database connected to: ${options.url}`);
     const db = client.db();
 
-    db.collection('Etablishement').insertOne(fixtures, (err, res) => {
-      if (err) throw err;
-      console.log('Document inserted');
-    });
+    // db.collection('Etablishement').insertOne(fixtures, (err, res) => {
+    //   if (err) throw err;
+    //   console.log('Document inserted');
+    // });
 
     server.expose('registerModel', (name) => {
       server.expose(name, new Proxy({}, {

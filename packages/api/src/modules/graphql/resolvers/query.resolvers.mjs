@@ -1,5 +1,10 @@
 import lodash from 'lodash';
 
-export default {
+const resolveList = collection => async (_, args,{ server, credentials },
+) => (
+  server.plugins.mongodb[collection].find().toArray()
+);
 
+export default {
+  etablishement: resolveList('etablishement'),
 };

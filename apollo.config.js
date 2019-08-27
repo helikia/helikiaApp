@@ -13,7 +13,7 @@ const AUTH_TOKEN = 'apollo-token';
 // Config
 const defaultOptions = {
   // You can use `https` for secure connection (recommended in production)
-  httpEndpoint: 'http://localhost:53919/graphql',
+  httpEndpoint: 'http://localhost:41363/graphql',
   // LocalStorage token
   tokenName: AUTH_TOKEN,
   // Enable Automatic Query persisting with Apollo Engine
