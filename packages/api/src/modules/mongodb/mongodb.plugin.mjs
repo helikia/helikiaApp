@@ -4,7 +4,7 @@ import fixtures from './fixtures/db.json';
 export default {
   name: 'mongodb',
   async register(server, options) {
-    const client = await mongodb.MongoClient.connect(options.url, { 
+    const client = await mongodb.MongoClient.connect(options.url, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

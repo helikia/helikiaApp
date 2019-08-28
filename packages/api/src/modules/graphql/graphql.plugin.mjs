@@ -6,7 +6,7 @@ import typeDefs from './definitions/typeDefs';
 
 const resolvers = {
   Query: {
-    etablishement: () => 'bonjour je suis Toto de la Vega',
+    etablishement: () => server.plugins.mongodb['etablishement'].find().toArray(),
   },
 };
 
