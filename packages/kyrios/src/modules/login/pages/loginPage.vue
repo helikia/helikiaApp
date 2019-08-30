@@ -1,32 +1,23 @@
 <template>
-  <div class="hello">
-    <h1>loginPage</h1>
-  </div>
+  <v-content>
+    <v-container class="fill-height" fluid>
+      <v-row align="center" justify="center">
+        <v-col cols="12" sm="8" md="4">
+          <VLoginFormComponent />
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-content>
 </template>
 
+
 <script>
+import VLoginFormComponent from '../components/loginFormComponent.vue';
+
 export default {
   name: 'loginPage',
-  props: {
-    msg: String,
+  components: {
+    VLoginFormComponent,
   },
 };
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "start": "node --experimental-modules ./packages/api",
-    "serve": "vue-cli-service serve",
+    "serve": "NODE_ENV=development vue-cli-service serve ./packages/app/src/main.js",
     "dev:back": "nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
     "loadFixtures": "nodemon --experimental-modules ./packages/api/src/modules/mongodb/fixtures/fixtures.mjs",
-    "build": "vue-cli-service build",
+    "build": "NODE_ENV=production vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:e2e:prod": "vue-cli-service test:e2e --headless",
@@ -21,13 +21,16 @@
     "apollo-link-http": "^1.5.15",
     "core-js": "^2.6.5",
     "graphql": "^14.5.3",
-    "graphql-tag": "^2.10.1",
+    "sass": "^1.22.10",
+    "vee-validate": "^3.0.3",
     "vue": "^2.6.10",
     "vue-apollo": "^3.0.0-rc.2",
+    "vue-i18n": "^8.14.0",
     "vue-router": "^3.1.2",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@mdi/font": "^4.2.95",
     "@vue/cli-plugin-babel": "^3.11.0",
     "@vue/cli-plugin-e2e-cypress": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
@@ -40,7 +43,10 @@
     "babel-jest": "^23.6.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "graphql-tag": "^2.10.1",
     "lint-staged": "^8.1.5",
+    "material-design-icons-iconfont": "^5.0.1",
+    "sass-loader": "^7.0.0",
     "vue-cli-plugin-apollo": "^0.21.0",
     "vue-template-compiler": "^2.6.10"
   }
