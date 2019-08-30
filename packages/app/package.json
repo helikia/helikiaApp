@@ -1,0 +1,8 @@
+{
+  "name": "@helikia/app",
+  "version": "1.0.0",
+  "description": "Frontend application for Helikia",
+  "private": true,
+  "main": "main.js",
+  "author": "matthieu.jacques.dev@gmail.com",
+}
