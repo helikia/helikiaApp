@@ -1,13 +1,7 @@
 module.exports = {
-  // server: {
-  //   port: process.env.PORT || 5000,
-  //   cache: {
-  //     engine: 'catbox-redis',
-  //     url: process.env.REDIS_URL || 'redis://localhost:6379',
-  //     database: 0,
-  //     partition: 'arborescence',
-  //   },
-  // },
+  server: {
+    port: process.env.PORT || 5000,
+  },
   logs: {
     colors: true,
   },

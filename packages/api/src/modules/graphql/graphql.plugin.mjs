@@ -1,11 +1,13 @@
 import ApolloServerHapi from 'apollo-server-hapi';
-import mongodb from 'mongodb';
 
 import typeDefs from './definitions/typeDefs';
-import Query from './resolvers/query.resolvers';
+// import Query from './resolvers/query.resolvers';
+// import Etablishement from './resolvers/queries/etablishement.resolvers';
 
 const resolvers = {
-  Query
+  Query: {
+    etablishement: (_, __, { server }) => server.plugins.mongodb.Etablishement.find().toArray(),
+  },
 };
 
 export default {
@@ -14,6 +16,9 @@ export default {
     const gqlServer = new ApolloServerHapi.ApolloServer({
       typeDefs,
       resolvers,
+      context: async () => ({
+        server,
+      }),
     });
 
     // eslint-disable-next-line no-param-reassign

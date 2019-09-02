@@ -1,3 +1,4 @@
+
 import ApolloServerHapi from 'apollo-server-hapi';
 
 import Query from './query.type';
