@@ -6,7 +6,7 @@ import typeDefs from './definitions/typeDefs';
 
 const resolvers = {
   Query: {
-    etablishement: () => server.plugins.mongodb['etablishement'].find().toArray(),
+    etablishement: (_, __, { server }) => server.plugins.mongodb.Etablishement.find().toArray(),
   },
 };
 
@@ -16,6 +16,9 @@ export default {
     const gqlServer = new ApolloServerHapi.ApolloServer({
       typeDefs,
       resolvers,
+      context: async () => ({
+        server,
+      }),
     });
 
     // eslint-disable-next-line no-param-reassign

@@ -13,7 +13,7 @@ import store from './store';
 
 import '@babel/polyfill';
 import 'roboto-fontface/css/roboto/roboto-fontface.css';
-import 'material-design-icons-iconfont/dist/material-design-icons.css'; // Ensure you are using css-loader
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
 import translation from './translation/trad.json';
 
