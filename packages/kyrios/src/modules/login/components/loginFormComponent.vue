@@ -2,21 +2,18 @@
     <v-card :elevation="5" class="elevation-12">
         <v-card-title class="justify-center">Helikia</v-card-title>
         <v-card-text>
-            <form
-            method="POST"
-            ref="form"
-            lazy-validation
-            >
-                <v-text-field
-                    id="email"
-                    required
-                    label="Email"
-                    placeholder="johndoe@email.com"
-                    name="login"
-                    prepend-icon="email"
-                    type="text"
-                />
-            <v-text-field
+            <form>
+              <v-text-field
+                id="email"
+                required
+                 v-validate="'required|email'"
+                label="Email"
+                placeholder="johndoe@email.com"
+                name="login"
+                prepend-icon="email"
+                type="text"
+              />
+              <v-text-field
                 id="password"
                 required
                 label="Mot de passe"
@@ -24,7 +21,7 @@
                 name="password"
                 prepend-icon="lock"
                 type="password"
-            />
+              />
             </form>
         </v-card-text>
         <v-card-actions>
@@ -57,7 +54,7 @@ export default {
   },
   methods: {
     async submit() {
-      console.log(result);
+      console.log('result');
     },
   },
 };
