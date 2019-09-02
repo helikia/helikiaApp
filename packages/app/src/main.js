@@ -17,7 +17,8 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css';
 
 import translation from './translation/trad.json';
 
-Vue.use(Vuetify, VeeValidate);
+Vue.use(Vuetify);
+Vue.use(VeeValidate, { inject: false });
 
 Vue.config.productionTip = false;
 
