@@ -1,16 +1,11 @@
 <template>
-    <toto>
-      <p slot="content">Mon super dashboard</p>
-    </toto>
+    <div>
+      mon super dashboard
+    </div>
 </template>
 
 <script>
-import toto from '../../../containers/kyrios.container.vue';
-
 export default {
   name: 'dashboardPage',
-  components: {
-    toto,
-  },
 };
 </script>

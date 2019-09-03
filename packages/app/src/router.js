@@ -7,8 +7,8 @@ import LoginPage from '../../kyrios/src/modules/login/pages/loginPage.vue';
 import Kyrios from '../../kyrios/src/containers/kyrios.container.vue';
 import Dashboard from '../../kyrios/src/modules/dashboard/pages/dashboardPage.vue';
 
-import EtablishementList from '../../kyrios/src/modules/etablishement/pages/etablishementPageList.vue';
-import EtablishementSingle from '../../kyrios/src/modules/etablishement/pages/etablishementPage.vue';
+import EstablishementList from '../../kyrios/src/modules/establishement/pages/establishementPageList.vue';
+import EstablishementSingle from '../../kyrios/src/modules/establishement/pages/establishementPage.vue';
 
 import UserSettings from '../../kyrios/src/modules/userSettings/pages/userSettingsPage.vue';
 
@@ -34,48 +34,30 @@ export default new Router({
       name: 'Logout',
     },
     {
-      name: 'dashboard',
-      path: '/dashboard',
-      component: Dashboard,
-      meta: { requiresAuth: true },
+      path: '/kyrios',
+      component: Kyrios,
+      children: [
+        {
+          path: '/kyrios/dashboard',
+          component: Dashboard,
+        },
+        {
+          title: 'establishement',
+          path: '/kyrios/etablissements',
+          component: EstablishementList,
+        },
+        {
+          title: 'SingleEstablishement',
+          path: '/kyrios/etablissements/:id',
+          component: EstablishementSingle,
+        },
+        {
+          title: 'settings',
+          path: '/kyrios/settings/:userId',
+          component: UserSettings,
+        },
+      ],
     },
-    // {
-    //   path: '/kyrios',
-    //   component: Kyrios,
-    //   children: [
-    //     {
-    //       name: 'dashboard',
-    //       path: 'dashboard',
-    //       component: Dashboard,
-    //       meta: { requiresAuth: true },
-    //     },
-        // {
-        //   title: 'etablishements',
-        //   path: '/kyrios/etablishements',
-        //   component: EtablishementList,
-        //   exact: true,
-        // },
-        // {
-        //   title: 'etablishement',
-        //   path: '/kyrios/etablishements/:etablishementSlug',
-        //   component: EtablishementSingle,
-        //   exact: true,
-        // },
-        // {
-        //   title: 'settings',
-        //   path: '/kyrios/settings/:userId',
-        //   component: UserSettings,
-        //   exact: true,
-        // },
-        // {
-        //   path: '/kyrios',
-        //   name: 'kyriosHome',
-        //   redirect: {
-        //     name: 'dashboard',
-        //   },
-        // },
-    //   ],
-    // },
     {
       path: '*',
       name: 'PageNotFound',

@@ -4,8 +4,8 @@
       app
       clipped-left
       flat
-      dark
-      color="primary"
+      color="grey lighten-4"
+      class="toto"
     >
       <div class="headline" to="/dashboard">Helikia</div>
       <div class="flex-grow-1"></div>
@@ -28,11 +28,9 @@
     <v-content>
       <VNavigationComponent/>
       <v-container fluid fill-height class="grey lighten-4 f">
-        <v-row>
-          <v-col class="shrink">
-            <slot name="content"></slot>
-          </v-col>
-        </v-row>
+        <div style="width:100%;">
+          <router-view></router-view>
+        </div>
       </v-container>
     </v-content>
   </div>
@@ -55,3 +53,8 @@ export default {
   }),
 };
 </script>
+ <style lang="scss" scoped>
+ .toto {
+   border-bottom: 1px solid #cecece !important;
+ }
+ </style>

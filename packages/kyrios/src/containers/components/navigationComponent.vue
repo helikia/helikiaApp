@@ -45,7 +45,7 @@ export default {
     drawer: null,
     mini: true,
     items: [
-      { title: 'Ephad', icon: 'home_work', path: '/kyrios/etablishements' },
+      { title: 'Ephad', icon: 'home_work', path: '/kyrios/etablissements' },
       { title: 'Utilisateurs', icon: 'supervisor_account' },
     ],
   }),

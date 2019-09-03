@@ -5,8 +5,10 @@ import User from './types/user.type';
 
 export default ApolloServerHapi.gql`
   ${Establishement}
+  ${User}
 
   type Query {
-    establishement: [Establishement]
+    me: User
+    allEstablishements: [Establishement]
   }
 `;
