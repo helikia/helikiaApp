@@ -1,7 +1,7 @@
 import ApolloServerHapi from 'apollo-server-hapi';
 
 export default ApolloServerHapi.gql`
-  type Etablishement {
+  type Establishement {
     _id: ID!
     name: String!
     cp: String!

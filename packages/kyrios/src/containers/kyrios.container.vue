@@ -26,11 +26,11 @@
       </v-menu>
     </v-app-bar>
     <v-content>
-      <v-container fluid fill-height class="grey lighten-4 f">
       <VNavigationComponent/>
+      <v-container fluid fill-height class="grey lighten-4 f">
         <v-row>
           <v-col class="shrink">
-            <slot name="mainContent" />
+            <slot name="content"></slot>
           </v-col>
         </v-row>
       </v-container>

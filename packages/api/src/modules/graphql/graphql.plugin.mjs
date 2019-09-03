@@ -6,12 +6,13 @@ import typeDefs from './definitions/typeDefs';
 
 const resolvers = {
   Query: {
-    etablishement: (_, __, { server }) => server.plugins.mongodb.Etablishement.find().toArray(),
+    establishement: (_, __, { server }) => server.plugins.mongodb.Establishement.find().toArray(),
   },
 };
 
 export default {
   name: 'graphql-server',
+  dependencies: ['mongodb', 'helikia'],
   async register(server) {
     const gqlServer = new ApolloServerHapi.ApolloServer({
       typeDefs,

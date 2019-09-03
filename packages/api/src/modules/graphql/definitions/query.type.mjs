@@ -1,12 +1,12 @@
 import ApolloServerHapi from 'apollo-server-hapi';
 
-import Etablishement from './types/etablishement.type';
+import Establishement from './types/establishement.type';
 import User from './types/user.type';
 
 export default ApolloServerHapi.gql`
-  ${Etablishement}
+  ${Establishement}
 
   type Query {
-    etablishement: [Etablishement]
+    establishement: [Establishement]
   }
 `;

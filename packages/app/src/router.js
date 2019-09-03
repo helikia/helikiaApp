@@ -34,43 +34,48 @@ export default new Router({
       name: 'Logout',
     },
     {
-      path: '/kyrios',
-      name: 'Kyrios',
-      component: Kyrios,
-      children: [
-        {
-          title: 'dashboard',
-          path: '/kyrios/dashboard',
-          component: Dashboard,
-          exact: true,
-        },
-        {
-          title: 'etablishements',
-          path: '/kyrios/etablishements',
-          component: EtablishementList,
-          exact: true,
-        },
-        {
-          title: 'etablishement',
-          path: '/kyrios/etablishements/:etablishementSlug',
-          component: EtablishementSingle,
-          exact: true,
-        },
-        {
-          title: 'settings',
-          path: '/kyrios/settings/:userId',
-          component: UserSettings,
-          exact: true,
-        },
-        {
-          path: '/kyrios',
-          name: 'kyriosHome',
-          redirect: {
-            name: 'dashboard',
-          },
-        },
-      ],
+      name: 'dashboard',
+      path: '/dashboard',
+      component: Dashboard,
+      meta: { requiresAuth: true },
     },
+    // {
+    //   path: '/kyrios',
+    //   component: Kyrios,
+    //   children: [
+    //     {
+    //       name: 'dashboard',
+    //       path: 'dashboard',
+    //       component: Dashboard,
+    //       meta: { requiresAuth: true },
+    //     },
+        // {
+        //   title: 'etablishements',
+        //   path: '/kyrios/etablishements',
+        //   component: EtablishementList,
+        //   exact: true,
+        // },
+        // {
+        //   title: 'etablishement',
+        //   path: '/kyrios/etablishements/:etablishementSlug',
+        //   component: EtablishementSingle,
+        //   exact: true,
+        // },
+        // {
+        //   title: 'settings',
+        //   path: '/kyrios/settings/:userId',
+        //   component: UserSettings,
+        //   exact: true,
+        // },
+        // {
+        //   path: '/kyrios',
+        //   name: 'kyriosHome',
+        //   redirect: {
+        //     name: 'dashboard',
+        //   },
+        // },
+    //   ],
+    // },
     {
       path: '*',
       name: 'PageNotFound',
