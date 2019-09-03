@@ -6,5 +6,5 @@ const resolveList = collection => async (_, args, { server, credentials },
 );
 
 export default {
-  etablishement: resolveList('etablishement'),
+  establishement: resolveList('Establishement'),
 };

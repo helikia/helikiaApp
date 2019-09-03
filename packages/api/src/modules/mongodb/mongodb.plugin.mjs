@@ -17,15 +17,7 @@ export default {
     // });
 
     server.expose('registerModel', (name) => {
-      server.expose(name, new Proxy({}, {
-        get: (_, operation) => {
-          if (operation === 'findById') {
-            return id => db.collection(name).findOne({ _id: new mongodb.ObjectID() });
-          }
-
-          return (...args) => db.collection(name)[operation](...args);
-        },
-      }));
+      server.expose(name, db.collection(name));
     });
 
     server.events.on('stop', () => client.close());
