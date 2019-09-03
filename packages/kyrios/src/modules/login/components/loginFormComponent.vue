@@ -34,28 +34,15 @@
 </template>
 <script>
 import gql from 'graphql-tag';
-import {
-  ValidationObserver,
-  ValidationProvider,
-  withValidation
-} from 'vee-validate';
 
 export default {
   name: 'LoginFormComponent',
-  component: {
-    ValidationProvider,
-    ValidationObserver,
-  },
-  data: () => ({
-   
-  }),
   apollo: {
     me: gql`
     query {
-      me { 
-        id
+      etablishement { 
+        _id
         name
-        email
       }
     }
   `,

@@ -1,38 +1,57 @@
 <template>
-<div>diififif</div>
+  <div>
+    <v-app-bar
+      app
+      clipped-left
+      flat
+      dark
+      color="primary"
+    >
+      <div class="headline" to="/dashboard">Helikia</div>
+      <div class="flex-grow-1"></div>
+      <v-menu offset-y>
+        <template v-slot:activator="{ on }">
+          <v-btn v-on="on" icon>
+            <v-icon>account_circle</v-icon>
+          </v-btn>
+        </template>
+        <v-list rounded :elevation="0">
+          <v-list-item v-for="item in items" :key="item.title" :to="item.path" link>
+            <v-list-item-icon>
+                <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </v-app-bar>
+    <v-content>
+      <v-container fluid fill-height class="grey lighten-4 f">
+      <VNavigationComponent/>
+        <v-row>
+          <v-col class="shrink">
+            <slot name="mainContent" />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </div>
 </template>
 
 
 <script>
+import VNavigationComponent from './components/navigationComponent.vue';
+
 export default {
   name: 'kyriosContainer',
-  props: {
-    source: String,
+  components: {
+    VNavigationComponent,
   },
   data: () => ({
-    drawer: null,
     items: [
-      { icon: 'lightbulb_outline', text: 'Notes' },
-      { icon: 'touch_app', text: 'Reminders' },
-      { divider: true },
-      { heading: 'Labels' },
-      { icon: 'add', text: 'Create new label' },
-      { divider: true },
-      { icon: 'archive', text: 'Archive' },
-      { icon: 'delete', text: 'Trash' },
-      { divider: true },
-      { icon: 'settings', text: 'Settings' },
-      { icon: 'chat_bubble', text: 'Trash' },
-      { icon: 'help', text: 'Help' },
-      { icon: 'phonelink', text: 'App downloads' },
-      { icon: 'keyboard', text: 'Keyboard shortcuts' },
+      { title: 'Paramètres', icon: 'settings', path: '/kyrios/settings/11223311' },
+      { title: 'Se déconnecter', icon: 'logout', path: '/logout' },
     ],
   }),
 };
 </script>
-
-<style>
-#keep .v-navigation-drawer__border {
-  display: none
-}
-</style>
