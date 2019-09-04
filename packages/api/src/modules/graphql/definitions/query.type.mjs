@@ -1,14 +1,15 @@
 import ApolloServerHapi from 'apollo-server-hapi';
 
 import Establishement from './types/establishement.type';
-import User from './types/user.type';
+import UserKyrios from './types/userKyrios.type';
 
 export default ApolloServerHapi.gql`
   ${Establishement}
-  ${User}
+  ${UserKyrios}
 
   type Query {
-    me: User
+    me: [UserKyrios]
     allEstablishements: [Establishement]
+    allUserKyrios: [UserKyrios]
   }
 `;

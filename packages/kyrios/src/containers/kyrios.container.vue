@@ -5,7 +5,7 @@
       clipped-left
       flat
       color="grey lighten-4"
-      class="toto"
+      class="header"
     >
       <div class="headline" to="/dashboard">Helikia</div>
       <div class="flex-grow-1"></div>
@@ -54,7 +54,10 @@ export default {
 };
 </script>
  <style lang="scss" scoped>
- .toto {
-   border-bottom: 1px solid #cecece !important;
+ .v-application .grey.lighten-4 {
+  border-bottom-color: #d7d7d7 !important;
+ }
+ .header {
+   border-bottom: 1px solid #d7d7d7 !important;
  }
  </style>

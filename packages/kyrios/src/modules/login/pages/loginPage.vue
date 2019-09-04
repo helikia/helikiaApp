@@ -12,12 +12,27 @@
 
 
 <script>
+import gql from 'graphql-tag';
 import VLoginFormComponent from '../components/loginFormComponent.vue';
 
 export default {
   name: 'loginPage',
   components: {
     VLoginFormComponent,
+  },
+  data() {
+    return {
+      me: null,
+    };
+  },
+  apollo: {
+    me: gql` query {
+      me {
+        id
+        name
+        email
+      }
+    }`,
   },
 };
 </script>

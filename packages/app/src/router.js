@@ -7,6 +7,8 @@ import LoginPage from '../../kyrios/src/modules/login/pages/loginPage.vue';
 import Kyrios from '../../kyrios/src/containers/kyrios.container.vue';
 import Dashboard from '../../kyrios/src/modules/dashboard/pages/dashboardPage.vue';
 
+import AccountUsersList from '../../kyrios/src/modules/accountUser/pages/accountUserPage.vue';
+
 import EstablishementList from '../../kyrios/src/modules/establishement/pages/establishementPageList.vue';
 import EstablishementSingle from '../../kyrios/src/modules/establishement/pages/establishementPage.vue';
 
@@ -45,6 +47,11 @@ export default new Router({
           title: 'establishement',
           path: '/kyrios/etablissements',
           component: EstablishementList,
+        },
+        {
+          title: 'accountUsers',
+          path: '/kyrios/account-users',
+          component: AccountUsersList,
         },
         {
           title: 'SingleEstablishement',

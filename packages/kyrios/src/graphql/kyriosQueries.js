@@ -10,12 +10,22 @@ export const GET_ESTABLISHEMENTS = gql`
     }
 `;
 
-export const GET_ESTABLISHEMENT = gql`
+export const GET_USERS = gql`
     query {
-        allEstablishements {
+        allUserKyrios {
+            firstname
+            lastname
+            email
+        }
+    }
+`;
+
+export const GET_ME = gql`
+    query {
+        me {
             name
-            street
-            cp
+            firstname
+            lastname
         }
     }
 `;

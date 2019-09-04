@@ -6,7 +6,6 @@
               <v-text-field
                 id="email"
                 required
-                 v-validate="'required|email'"
                 label="Email"
                 placeholder="johndoe@email.com"
                 name="login"
@@ -37,6 +36,12 @@ import gql from 'graphql-tag';
 
 export default {
   name: 'LoginFormComponent',
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
   apollo: {
     me: gql`
     query {

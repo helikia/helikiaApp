@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
-import { setContext } from 'apollo-link-context';
+import { onError } from 'apollo-link-error';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client';
 
@@ -23,7 +24,7 @@ const defaultOptions = {
   // Override default http link
   // link: myLink,
   // Override default cache
-  // cache: myCache,
+  cache: new InMemoryCache(),
   // Additional ApolloClient options
   // apollo: { ... }
   getAuth: (tokenName) => {
