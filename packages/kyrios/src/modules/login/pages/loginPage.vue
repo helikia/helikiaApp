@@ -20,19 +20,5 @@ export default {
   components: {
     VLoginFormComponent,
   },
-  data() {
-    return {
-      me: null,
-    };
-  },
-  apollo: {
-    me: gql` query {
-      me {
-        id
-        name
-        email
-      }
-    }`,
-  },
 };
 </script>

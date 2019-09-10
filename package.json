@@ -22,6 +22,7 @@
     "apollo-link-http": "^1.5.15",
     "core-js": "^2.6.5",
     "graphql": "^14.5.3",
+    "moment": "^2.24.0",
     "sass": "^1.22.10",
     "vee-validate": "^3.0.3",
     "vue": "^2.6.10",

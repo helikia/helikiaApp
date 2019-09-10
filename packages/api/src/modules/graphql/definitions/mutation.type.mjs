@@ -7,5 +7,6 @@ export default ApolloServerHapi.gql`
 
   type Mutation {
     upsertUserKyrios(firstname: String!, lastname: String!, email: String!, password: String!, creationDate: String!, role: String!): UserKyrios
+    signinUserKyrios(email: String!, password: String!): Token!
   }
 `;

@@ -3,13 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import typeDefs from './definitions/typeDefs';
 
-// import md5 from 'md5';
-
-// const createToken = (user, secret, expiresIn) => {
-//   const { email, password } = user;
-//   return jwt.sign({ email, password }, secret, {});
-// };
-
+const createToken = (email, secret, expiresIn) => jwt.sign({ email }, secret);
 
 const resolvers = {
   Query: {
@@ -19,6 +13,20 @@ const resolvers = {
   },
 
   Mutation: {
+    signinUserKyrios: async (_, { email, password }, { server }) => {
+      const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
+
+      if (!userEmail) {
+        throw new Error('User no exist');
+      }
+
+      const isValidePassword = await bcrypt.compare(password, userEmail.password);
+
+      if (!isValidePassword) {
+        throw new Error('Invalid password');
+      }
+      return { token: createToken(email, userEmail.password)};
+    },
     upsertUserKyrios: async (_, { firstname, lastname, email, password, creationDate, role }, { server }) => {
       const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
 
@@ -37,9 +45,6 @@ const resolvers = {
         creationDate,
         role,
       };
-
-      const token = jwt.sign({ user: email }, hashedPassword);
-      console.log(token);
       const { insertedId } = await server.plugins.mongodb.UserKyrios.insertOne(value);
       return { ...value, _id: insertedId };
     },

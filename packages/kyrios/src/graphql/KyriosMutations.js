@@ -13,3 +13,12 @@ mutation($firstname: String!, $lastname: String!, $email: String!, $password: St
   }
 }
 `;
+
+
+export const SIGNIN_USERKYRIOS = gql`
+mutation ($email: String!, $password:String!){
+  signinUserKyrios(email:$email, password: $password) {
+		token
+  }
+}
+`;
