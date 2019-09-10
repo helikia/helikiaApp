@@ -9,22 +9,19 @@
           <v-container>
             <v-row>
               <v-col cols="12" md="6">
-                <v-text-field v-model='user.lastname' label="Nom*" placeholder="Nom de l'utilisateur" required />
+                <v-text-field v-model='lastname' label="Nom*" placeholder="Nom de l'utilisateur" required />
               </v-col>
               <v-col cols="12" md="6">
-                <v-text-field v-model='user.firstname' label="Prénom*" placeholder="Prénom de l'utilisateur" required />
+                <v-text-field v-model='firstname' label="Prénom*" placeholder="Prénom de l'utilisateur" required />
               </v-col>
               <v-col cols="12" sm="6">
-                <v-text-field v-model='user.email' label="Email*" placeholder="email@email.com" required />
+                <v-text-field v-model='email' label="Email*" placeholder="email@email.com" required />
               </v-col>
               <v-col cols="12" sm="6">
-                <v-select :items="['Admin', 'Modérateur']" label="Rôle*" required />
+                <v-select v-model='role' :items="['Admin', 'Modérateur']" label="Rôle*" required />
               </v-col>
-              <v-col cols="12" sm="6">
-                <v-text-field v-model='user.password' label="Password*" type="password" required />
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-text-field label="Password*" type="password" required />
+              <v-col cols="12" sm="12">
+                <v-text-field v-model='password' label="Password*" type="password" required />
               </v-col>
             </v-row>
           </v-container>
@@ -32,7 +29,7 @@
         <v-card-actions>
           <div class="flex-grow-1"></div>
           <v-btn color="error" @click="closeDialog">Fermer</v-btn>
-          <v-btn color="success">Ajouter un utilisateur</v-btn>
+          <v-btn color="success" @click="submitForm">Ajouter un utilisateur</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -51,25 +48,30 @@ export default {
     },
   },
   data: () => ({
-    user: {
-      firstname: 'matthieu',
-      lastname: 'jacquqes',
-      email: 'landar@hpotma.fr',
-      password: 'toto',
-    },
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    creationDate: '',
+    role: '',
   }),
   methods: {
     closeDialog() {
       this.$emit('closeModal');
     },
     async submitForm() {
-      const userCreated = await this.$apollo.mutate({
+      await this.$apollo.mutate({
         mutation: UPSERT_USER_KYRIOS,
         variables: {
-          user: this.user,
+          firstname: this.firstname,
+          lastname: this.lastname,
+          email: this.email,
+          password: this.password,
+          creationDate: new Date(),
+          role: this.role,
         },
       });
-      console.log(userCreated);
+      this.$emit('closeModal');
     },
   },
 };

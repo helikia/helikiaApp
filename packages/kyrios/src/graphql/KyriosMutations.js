@@ -1,14 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 import gql from 'graphql-tag';
-import { userKyriosFragment } from './KyriosFragments';
 
 export const UPSERT_USER_KYRIOS = gql`
-${userKyriosFragment}
 
-  mutation UpsertUserKyrios($user: UserKyriosInput!) {
-    upsertUserKyrios(user: $user) {
-        ...userKyriosFields
-        creationDate
-    }
+mutation($firstname: String!, $lastname: String!, $email: String!, $password: String!, $creationDate: String!, $role: String!) {
+  upsertUserKyrios(firstname: $firstname, lastname: $lastname, email: $email, password: $password, creationDate: $creationDate, role: $role){
+    firstname
+    lastname
+    email
+    password
+    creationDate
   }
+}
 `;

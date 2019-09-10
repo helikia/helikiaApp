@@ -50,6 +50,10 @@ export default {
           value: 'email',
         },
         {
+          text: 'Rôle',
+          value: 'role',
+        },
+        {
           text: 'Date de création',
           value: 'creationDate',
         },

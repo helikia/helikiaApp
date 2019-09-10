@@ -1,6 +1,8 @@
 import ApolloServerHapi from 'apollo-server-hapi';
-import typeDefs from './definitions/typeDefs';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import typeDefs from './definitions/typeDefs';
+
 // import md5 from 'md5';
 
 // const createToken = (user, secret, expiresIn) => {
@@ -16,39 +18,28 @@ const resolvers = {
     me: (_, __, { server }) => server.plugins.mongodb.UserKyrios.find().toArray(),
   },
 
-
   Mutation: {
-    // signInUserKyrios: async (_, { firstname, lastname, email, password }, { server }) => {
-    //   const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
-
-    //   if (!userEmail) {
-    //     throw new Error('User not found');
-    //   }
-
-    //   const isValidPassword = await bcrypt.compare()
-    // },
-
-    upsertUserKyrios: async (_, { firstname, lastname, email, password }, { server }) => {
+    upsertUserKyrios: async (_, { firstname, lastname, email, password, creationDate, role }, { server }) => {
       const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
 
       if (userEmail) {
         throw new Error('Email is already exist');
       }
 
-      // bcrypt.genSalt(10, (err, salt) => {
-      //   console.log(password, 'password');
-      //   bcrypt.hash(password, salt, (err, hash) => {
-      //     const value = { password: hash };
-      //     const { insertedId } = server.plugins.mongodb.UserKyrios.insertOne(value);
-      //     return { ...value, _id: insertedId }
-      //   });
-      // });
+      const userPassword = { password };
+      const hashedPassword = await bcrypt.hash(userPassword.password, 10);
 
+      const value = {
+        firstname,
+        lastname,
+        email,
+        password: hashedPassword,
+        creationDate,
+        role,
+      };
 
-      const value = { firstname, lastname, email, password };
-
-      console.log(value, 'value');
-
+      const token = jwt.sign({ user: email }, hashedPassword);
+      console.log(token);
       const { insertedId } = await server.plugins.mongodb.UserKyrios.insertOne(value);
       return { ...value, _id: insertedId };
     },

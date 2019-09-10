@@ -7,6 +7,7 @@ export default ApolloServerHapi.gql`
     lastname: String!
     email: String!
     password: String!
-    creationDate: Date
+    creationDate: String!
+    role: String!
   }
 `;

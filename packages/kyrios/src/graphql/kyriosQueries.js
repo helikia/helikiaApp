@@ -16,6 +16,8 @@ export const GET_USERS = gql`
             firstname
             lastname
             email
+            role
+            creationDate
         }
     }
 `;
