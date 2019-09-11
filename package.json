@@ -2,6 +2,10 @@
   "name": "helikia-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "11.15.0",
+    "yarn": ">= 1.7.0"
+  },
   "scripts": {
     "start": "node --experimental-modules ./packages/api",
     "serve": "NODE_ENV=development vue-cli-service serve ./packages/app/src/main.js",

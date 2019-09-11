@@ -25,7 +25,7 @@ const resolvers = {
       if (!isValidePassword) {
         throw new Error('Invalid password');
       }
-      return { token: createToken(email, userEmail.password)};
+      return { token: createToken(email, userEmail.password) };
     },
     upsertUserKyrios: async (_, { firstname, lastname, email, password, creationDate, role }, { server }) => {
       const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });

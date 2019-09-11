@@ -5,6 +5,10 @@
   "description": "Frontend application for Helikia",
   "author": "matthieu.jacques.dev@gmail.com",
   "main": "main.js",
+  "engines": {
+    "node": "11.15.0",
+    "yarn": ">= 1.7.0"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "@mdi/font": "^3.6.95",

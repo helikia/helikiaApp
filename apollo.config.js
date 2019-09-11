@@ -1,7 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import Vue from 'vue';
 import VueApollo from 'vue-apollo';
-import { onError } from 'apollo-link-error';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client';
@@ -94,11 +93,11 @@ export async function onLogout(apolloClient) {
   if (typeof localStorage !== 'undefined') {
     localStorage.removeItem(AUTH_TOKEN);
   }
-  if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient)
+  if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
   try {
     await apolloClient.resetStore();
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log('%cError on cache reset (logout)', 'color: orange;', e.message)
+    console.log('%cError on cache reset (logout)', 'color: orange;', e.message);
   }
 }

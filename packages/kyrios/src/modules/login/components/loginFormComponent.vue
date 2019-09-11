@@ -2,7 +2,7 @@
     <v-card :elevation="0" color="rgba(0, 0, 0, 0.0)">
         <v-card-title class="justify-center">Helikia</v-card-title>
         <v-card-text>
-            <v-form @submit.prevent="submitForm">
+            <v-form >
               <v-text-field
                 id="email"
                 v-model="email"
@@ -35,6 +35,7 @@
 </template>
 <script>
 import { SIGNIN_USERKYRIOS } from '../../../graphql/KyriosMutations';
+import { onLogin } from '../../../../../../apollo.config';
 
 export default {
   name: 'LoginFormComponent',
@@ -52,6 +53,10 @@ export default {
           email: this.email,
           password: this.password,
         },
+      }).then((data) => {
+        onLogin(this.$apollo.provider.defaultClient, data.data.signinUserKyrios.token);
+      }).catch((err) => {
+        console.error(err);
       });
     },
   },

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import store from './store';
 
 import HelloView from './components/HelloWorld.vue';
 
@@ -18,7 +19,7 @@ import PageNotFound from '../../app/src/components/notFoundComponent.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -42,26 +43,31 @@ export default new Router({
         {
           path: '/kyrios/dashboard',
           component: Dashboard,
+          meta: { requiresAuth: true },
         },
         {
           title: 'establishement',
           path: '/kyrios/etablissements',
           component: EstablishementList,
+          meta: { requiresAuth: true },
         },
         {
           title: 'accountUsers',
           path: '/kyrios/account-users',
           component: AccountUsersList,
+          meta: { requiresAuth: true },
         },
         {
           title: 'SingleEstablishement',
           path: '/kyrios/etablissements/:id',
           component: EstablishementSingle,
+          meta: { requiresAuth: true },
         },
         {
           title: 'settings',
           path: '/kyrios/settings/:userId',
           component: UserSettings,
+          meta: { requiresAuth: true },
         },
       ],
     },
@@ -72,3 +78,4 @@ export default new Router({
     },
   ],
 });
+export default router;

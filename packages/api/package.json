@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "src/api.mjs",
+  "engines": {
+    "node": "11.15.0",
+    "yarn": ">= 1.7.0"
+  },
   "scripts": {
     "start": "node --experimental-modules .",
     "dev": "nodemon --experimental-modules .",

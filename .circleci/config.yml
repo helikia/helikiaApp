@@ -41,7 +41,7 @@ jobs:
       - image: circleci/node:10.6
     steps:
       - checkout
-      - run: yarn install
+      - run: yarn install && cd ./packages/api && yarn install
       - run: yarn build
   linter:
     docker:
