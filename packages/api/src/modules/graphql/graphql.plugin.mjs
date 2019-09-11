@@ -58,9 +58,12 @@ export default {
     const gqlServer = new ApolloServerHapi.ApolloServer({
       typeDefs,
       resolvers,
-      context: async () => ({
-        server,
-      }),
+      async context({ request }) {
+        const token = request.headers.authorization;
+        return {
+          server,
+        };
+      },
     });
 
     // eslint-disable-next-line no-param-reassign

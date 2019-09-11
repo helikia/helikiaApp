@@ -3,13 +3,13 @@ import Vue from 'vue';
 import VueApollo from 'vue-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { createApolloClient, restartWebsockets } from 'vue-cli-plugin-apollo/graphql-client';
+import { createApolloClient } from 'vue-cli-plugin-apollo/graphql-client';
 
 // Install the vue plugin
 Vue.use(VueApollo);
 
 // Name of the localStorage item
-const AUTH_TOKEN = 'apollo-token';
+const AUTH_TOKEN = 'HelikiaToken';
 
 // Config
 const defaultOptions = {
@@ -21,16 +21,19 @@ const defaultOptions = {
   // Is being rendered on the server?
   ssr: true,
   // Override default http link
-  // link: myLink,
+  // link: authLink.concat(httpLink),
   // Override default cache
   cache: new InMemoryCache(),
   // Additional ApolloClient options
   // apollo: { ... }
-  getAuth: (tokenName) => {
+  getAuth: () => {
     // get the authentication token from local storage if it exists
-    const token = localStorage.getItem(tokenName);
+    const token = localStorage.getItem(AUTH_TOKEN);
     // return the headers to the context so httpLink can read them
-    return token || '';
+    if (token) {
+      return `Bearer ${token}`;
+    }
+    return '';
   },
 };
 
@@ -79,25 +82,11 @@ export async function onLogin(apolloClient, token) {
   if (typeof localStorage !== 'undefined' && token) {
     localStorage.setItem(AUTH_TOKEN, token);
   }
-  if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
-  try {
-    await apolloClient.resetStore();
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('%cError on cache reset (login)', 'color: orange;', e.message);
-  }
 }
 
 // Manually call this when user log out
-export async function onLogout(apolloClient) {
+export async function onLogout() {
   if (typeof localStorage !== 'undefined') {
     localStorage.removeItem(AUTH_TOKEN);
-  }
-  if (apolloClient.wsClient) restartWebsockets(apolloClient.wsClient);
-  try {
-    await apolloClient.resetStore();
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.log('%cError on cache reset (logout)', 'color: orange;', e.message);
   }
 }

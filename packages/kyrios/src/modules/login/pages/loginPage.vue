@@ -10,9 +10,7 @@
   </v-content>
 </template>
 
-
 <script>
-import gql from 'graphql-tag';
 import VLoginFormComponent from '../components/loginFormComponent.vue';
 
 export default {

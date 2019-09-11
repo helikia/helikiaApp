@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": "11.15.0",
+    "node":  "10.16.0",
     "yarn": ">= 1.7.0"
   }
 }

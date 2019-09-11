@@ -2,7 +2,7 @@
     <v-card :elevation="0" color="rgba(0, 0, 0, 0.0)">
         <v-card-title class="justify-center">Helikia</v-card-title>
         <v-card-text>
-            <v-form >
+            <v-form>
               <v-text-field
                 id="email"
                 v-model="email"
@@ -55,6 +55,7 @@ export default {
         },
       }).then((data) => {
         onLogin(this.$apollo.provider.defaultClient, data.data.signinUserKyrios.token);
+        this.$router.push('/kyrios/dashboard');
       }).catch((err) => {
         console.error(err);
       });

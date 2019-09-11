@@ -2,7 +2,7 @@ version: 2
 jobs:
   checkBranch:
     docker:
-      - image: circleci/node:10.6
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - restore_cache:
@@ -38,31 +38,31 @@ jobs:
           key: npm-{{ checksum "package.json" }}
   build:
     docker:
-      - image: circleci/node:10.6
+      - image: circleci/node:10.16.0
     steps:
       - checkout
-      - run: yarn install && cd ./packages/api && yarn install
+      - run: yarn install && cd ./packages/app && yarn install
       - run: yarn build
   linter:
     docker:
-      - image: circleci/node:10.6
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - run: yarn install
       - run: yarn lint
   test:unit:
     docker:
-      - image: circleci/node:10.6
+      - image: circleci/node:10.16.0
     steps:
       - checkout
       - run: yarn install
       - run: yarn test:unit
   test:e2e:
     docker:
-      - image: cypress/base:8
+      - image: cypress/base:10.16.0
     steps:
       - checkout
-      - run: yarn install
+      - run: yarn install && cd ./packages/app && yarn install
       - run: yarn test:e2e:prod
 workflows:
   version: 2

@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import store from './store';
 
 import HelloView from './components/HelloWorld.vue';
 
@@ -15,7 +14,7 @@ import EstablishementSingle from '../../kyrios/src/modules/establishement/pages/
 
 import UserSettings from '../../kyrios/src/modules/userSettings/pages/userSettingsPage.vue';
 
-import PageNotFound from '../../app/src/components/notFoundComponent.vue'; 
+import PageNotFound from '../../app/src/components/notFoundComponent.vue';
 
 Vue.use(Router);
 
@@ -78,4 +77,14 @@ const router = new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth === true) {
+    // eslint-disable-next-line no-unused-expressions
+    localStorage.getItem('HelikiaToken') ? next() : router.push('/');
+  } else {
+    next();
+  }
+});
+
 export default router;

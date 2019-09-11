@@ -16,12 +16,20 @@
           </v-btn>
         </template>
         <v-list rounded :elevation="0">
-          <v-list-item v-for="item in items" :key="item.title" :to="item.path" link>
+          <v-list-item to="/kyrios/settings/122345" link>
             <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
+                <v-icon>settings</v-icon>
             </v-list-item-icon>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
+            <v-list-item-title>Paramètres</v-list-item-title>
           </v-list-item>
+
+          <v-list-item @click="logout" link>
+            <v-list-item-icon>
+                <v-icon>logout</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Se déconnecter</v-list-item-title>
+          </v-list-item>
+
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -45,12 +53,13 @@ export default {
   components: {
     VNavigationComponent,
   },
-  data: () => ({
-    items: [
-      { title: 'Paramètres', icon: 'settings', path: '/kyrios/settings/11223311' },
-      { title: 'Se déconnecter', icon: 'logout', path: '/logout' },
-    ],
-  }),
+
+  methods: {
+    async logout() {
+      localStorage.removeItem('HelikiaToken');
+      await this.$router.push('/');
+    },
+  },
 };
 </script>
  <style lang="scss" scoped>
