@@ -2,12 +2,16 @@
   "name": "helikia-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.16.0",
+    "yarn": ">= 1.7.0"
+  },
   "scripts": {
     "start": "node --experimental-modules ./packages/api",
     "serve": "NODE_ENV=development vue-cli-service serve ./packages/app/src/main.js",
     "dev:back": "NODE_ENV=development nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
     "loadFixtures": "nodemon --experimental-modules ./packages/api/src/modules/mongodb/fixtures/fixtures.mjs",
-    "build": "NODE_ENV=production vue-cli-service build",
+    "build": "NODE_ENV=production vue-cli-service build ./packages/app/src/main.js --modern",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
     "test:e2e:prod": "vue-cli-service test:e2e --headless",
@@ -22,6 +26,7 @@
     "apollo-link-http": "^1.5.15",
     "core-js": "^2.6.5",
     "graphql": "^14.5.3",
+    "moment": "^2.24.0",
     "sass": "^1.22.10",
     "vee-validate": "^3.0.3",
     "vue": "^2.6.10",

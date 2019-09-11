@@ -1,5 +1,4 @@
 import mongodb from 'mongodb';
-import fixtures from './fixtures/db.json';
 
 export default {
   name: 'mongodb',
@@ -10,11 +9,6 @@ export default {
     });
     server.log('info', `Database connected to: ${options.url}`);
     const db = client.db();
-
-    // db.collection('Etablishement').insertOne(fixtures, (err, res) => {
-    //   if (err) throw err;
-    //   console.log('Document inserted');
-    // });
 
     server.expose('registerModel', (name) => {
       server.expose(name, db.collection(name));

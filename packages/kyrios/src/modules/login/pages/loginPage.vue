@@ -10,7 +10,6 @@
   </v-content>
 </template>
 
-
 <script>
 import VLoginFormComponent from '../components/loginFormComponent.vue';
 
