@@ -12,7 +12,19 @@ export const GET_ESTABLISHEMENTS = gql`
 
 export const GET_USERS = gql`
     query {
-        allUserKyrios {
+        userKyrios {
+            firstname
+            lastname
+            email
+            role
+            creationDate
+        }
+    }
+`;
+
+export const GET_USER_KYRIOS = gql`
+    query {
+        userKyrios {
             firstname
             lastname
             email

@@ -14,11 +14,23 @@ mutation($firstname: String!, $lastname: String!, $email: String!, $password: St
 }
 `;
 
-
 export const SIGNIN_USERKYRIOS = gql`
 mutation ($email: String!, $password:String!){
   signinUserKyrios(email:$email, password: $password) {
 		token
   }
 }
+`;
+
+export const EDIT_USER = gql`
+  mutation ($firstname: String!, $lastname: String!, $email: String!, $password: String!, $creationDate: String!, $role: String!) {
+    editUser(firstname: $firstname, lastname: $lastname, email: $email, password: $password, creationDate: $creationDate, role: $role) {
+      firstname
+      lastname
+      email
+      password
+      creationDate
+      role
+    }
+  }
 `;
