@@ -3,17 +3,18 @@
     <v-data-table
       calculate-widths
       :headers="headers"
-      :items="allUserKyrios"
+      :items="userKyrios"
+      :item-key="userKyrios.email"
       :search="search"
       :items-per-page="100"
     >
       <template v-slot:item.action="{ item }">
-        <v-btn height="0" width="0" min-width="0" :elevation="0" to="/kyrios/etablissements/1">
+        <v-btn height="0" width="0" min-width="0" :elevation="0" @click="editModalUser(item.email)">
           <v-icon small class="mr-2">
           edit
         </v-icon>
         </v-btn>
-        <v-btn height="0" width="0" min-width="0" :elevation="0" to="/kyrios/etablissements/1">
+        <v-btn height="0" width="0" min-width="0" :elevation="0" @click="deleteModal(item.email)">
           <v-icon small>
             delete
           </v-icon>
@@ -27,7 +28,7 @@
 export default {
   name: 'AccountUserListComponent',
   props: {
-    allUserKyrios: {
+    userKyrios: {
       type: Array,
       default() {
         return [];
@@ -65,6 +66,14 @@ export default {
         rowsPerPage: [10, 20, 30, 50],
       },
     };
+  },
+  methods: {
+    deleteModal(userEmail) {
+      this.$emit('displayDeleteModal', userEmail);
+    },
+    editModalUser(user) {
+      this.$emit('editModalUser', user);
+    },
   },
 };
 

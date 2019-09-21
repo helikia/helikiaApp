@@ -12,6 +12,7 @@ export default ApolloServerHapi.gql`
   type Query {
     me: [UserKyrios]
     allEstablishements: [Establishement]
-    allUserKyrios: [UserKyrios]
+    userKyrios: [UserKyrios]
+    getUserKyrios (email: String): UserKyrios
   }
 `;

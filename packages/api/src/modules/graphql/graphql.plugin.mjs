@@ -8,11 +8,40 @@ const createToken = (email, secret, expiresIn) => jwt.sign({ email }, secret);
 const resolvers = {
   Query: {
     allEstablishements: (_, __, { server }) => server.plugins.mongodb.Establishement.find().toArray(),
-    allUserKyrios: (_, __, { server }) => server.plugins.mongodb.UserKyrios.find().toArray(),
+    userKyrios: (_, __, { server }) => server.plugins.mongodb.UserKyrios.find().toArray(),
     me: (_, __, { server }) => server.plugins.mongodb.UserKyrios.find().toArray(),
+    getUserKyrios: (_, { email }, { server }) => server.plugins.mongodb.UserKyrios.findOne({ email }),
   },
 
   Mutation: {
+    editUser: async (_, { email, firstname, lastname, password, creationDate, role }, { server }) => {
+      const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
+      const { _id } = userEmail;
+
+      if (!userEmail) {
+        throw new Error('User no exist');
+      }
+      const userPassword = { password };
+      const hashedPassword = await bcrypt.hash(userPassword.password, 10);
+
+      const userKyrios = {
+        firstname,
+        lastname,
+        email,
+        password: hashedPassword,
+        creationDate,
+        role,
+      };
+
+      const { value: user } = await server.plugins.mongodb.UserKyrios.findOneAndUpdate(
+        { _id: _id },
+        { $set: { ...userKyrios } },
+        { returnOriginal: false },
+      );
+
+      return user;
+    },
+
     signinUserKyrios: async (_, { email, password }, { server }) => {
       const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
 

@@ -6,7 +6,7 @@
   "author": "matthieu.jacques.dev@gmail.com",
   "main": "main.js",
   "engines": {
-    "node":  "10.16.0",
+    "node":  "10.16.1",
     "yarn": ">= 1.7.0"
   },
   "dependencies": {
