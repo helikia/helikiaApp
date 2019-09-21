@@ -88,7 +88,7 @@ export default {
           role: this.role,
         },
       });
-      this.$emit('closeModalEdit');
+      this.$emit('closeEditModalUser');
     },
   },
 };

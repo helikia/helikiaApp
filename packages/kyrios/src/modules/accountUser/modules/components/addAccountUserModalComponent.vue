@@ -57,7 +57,7 @@ export default {
   }),
   methods: {
     closeDialog() {
-      this.$emit('closeAddModal');
+      this.$emit('closeAddModalUser');
     },
     async submitForm() {
       await this.$apollo.mutate({
@@ -71,7 +71,7 @@ export default {
           role: this.role,
         },
       });
-      this.$emit('closeModalAdd');
+      this.$emit('closeAddModalUser');
     },
   },
 };

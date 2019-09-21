@@ -19,7 +19,7 @@
         <ListComponent :userKyrios="userKyrios" @editModalUser="editModalUser"/>
       </v-col>
     </v-row>
-    <AddUserModalComponent :dialogAddUser="dialogAddUser" @closeAddModal="AddUserCloseModal" />
+    <AddUserModalComponent :dialogAddUser="dialogAddUser" @closeAddModalUser="closeAddModalUser" />
     <EditUserModalComponent :dialogEditUser="dialogEditUser" @closeEditModalUser="closeEditModalUser" :userEdit="userEdit" :user="user" />
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
     addUserModal() {
       this.dialogAddUser = true;
     },
-    AddUserCloseModal() {
+    closeAddModalUser() {
       this.dialogAddUser = false;
     },
     async editModalUser(value) {

@@ -14,15 +14,17 @@ const resolvers = {
   },
 
   Mutation: {
-    editUser: async (_, { email, firstname, lastname, password, creationDate,  role }, { server }) => {
-      const user = await server.plugins.mongodb.UserKyrios.findOne({ email });
-      if (!user) {
+    editUser: async (_, { email, firstname, lastname, password, creationDate, role }, { server }) => {
+      const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
+      const { _id } = userEmail;
+
+      if (!userEmail) {
         throw new Error('User no exist');
       }
       const userPassword = { password };
       const hashedPassword = await bcrypt.hash(userPassword.password, 10);
 
-      const value = {
+      const userKyrios = {
         firstname,
         lastname,
         email,
@@ -31,14 +33,17 @@ const resolvers = {
         role,
       };
 
-      console.log(value);
+      const { value: user } = await server.plugins.mongodb.UserKyrios.findOneAndUpdate(
+        { _id: _id },
+        { $set: { ...userKyrios } },
+        { returnOriginal: false },
+      );
 
-      const { insertedId } = await server.plugins.mongodb.UserKyrios.findOneAndUpdate(value);
-      return { ...value, _id: insertedId };
+      return user;
     },
 
     signinUserKyrios: async (_, { email, password }, { server }) => {
-      const userEmail = await server.plugins.mongodb.UserKyrios.find({ email });
+      const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
 
       if (!userEmail) {
         throw new Error('User no exist');
@@ -61,7 +66,7 @@ const resolvers = {
       const userPassword = { password };
       const hashedPassword = await bcrypt.hash(userPassword.password, 10);
 
-      const userKyrios = {
+      const value = {
         firstname,
         lastname,
         email,
@@ -69,13 +74,8 @@ const resolvers = {
         creationDate,
         role,
       };
-
-      console.log(userKyrios);
-      const { value: user } = await server.plugins.mongodb.UserKyrios.findOneAndUpdate(
-        { $set: { userKyrios } },
-        { returnOriginal: false },
-      );
-      return user;
+      const { insertedId } = await server.plugins.mongodb.UserKyrios.insertOne(value);
+      return { ...value, _id: insertedId };
     },
   },
 };
