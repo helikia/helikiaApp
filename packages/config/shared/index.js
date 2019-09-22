@@ -17,6 +17,7 @@ try {
 let envConfig = {};
 try {
   envConfig = requireConfigFile(process.env.APP_ENV);
+  console.log(process.env.APP_ENV, '----------------');
 } catch (e) {
   // Don't care
 }

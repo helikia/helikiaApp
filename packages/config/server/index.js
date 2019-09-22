@@ -18,6 +18,8 @@ try {
 let envConfig = {};
 try {
   envConfig = requireConfigFile(process.env.APP_ENV);
+  console.log('toto');
+  console.log(process.env.APP_ENV, '--------------------------');
 } catch (e) {
   // Don't care
 }
@@ -25,6 +27,8 @@ try {
 let localEnvConfig = {};
 try {
   localEnvConfig = requireConfigFile(`local-${process.env.APP_ENV}`);
+  console.log('baba');
+  console.log(process.env.APP_ENV, '*****************************');
 } catch (e) {
   // Don't care
 }
