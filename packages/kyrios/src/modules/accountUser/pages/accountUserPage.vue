@@ -16,11 +16,12 @@
     </v-row>
     <v-row>
       <v-col :cols="12">
-        <ListComponent :userKyrios="userKyrios" @editModalUser="editModalUser"/>
+        <ListComponent :userKyrios="userKyrios" @editModalUser="editModalUser" @displayDeleteModal="displayDeleteModal"/>
       </v-col>
     </v-row>
     <AddUserModalComponent :dialogAddUser="dialogAddUser" @closeAddModalUser="closeAddModalUser" />
     <EditUserModalComponent :dialogEditUser="dialogEditUser" @closeEditModalUser="closeEditModalUser" :userEdit="userEdit" :user="user" />
+    <DeleteUserModalComponent :dialogDeleteUser="dialogDeleteUser" @closeDeleteModalUser="closeDeleteModalUser" :userDelete="userDelete" :user="user" />
   </div>
 </template>
 
@@ -35,12 +36,15 @@ export default {
     ListComponent,
     EditUserModalComponent: () => import('../modules/components/editAccountUserModalComponent'),
     AddUserModalComponent: () => import('../modules/components/addAccountUserModalComponent'),
+    DeleteUserModalComponent: () => import('../modules/components/deleteAcountUserModalComponent'),
   },
   data() {
     return {
       dialogAddUser: false,
       dialogEditUser: false,
+      dialogDeleteUser: false,
       userEdit: '',
+      userDelete: '',
       user: {},
       email: '',
     };
@@ -62,7 +66,7 @@ export default {
       const response = await this.$apollo.query({
         query: gql`
         query {
-          getUserKyrios(email: "matthieu.jacques.dev@gmail.com") {
+          getUserKyrios(email: "${value}") {
             firstname lastname email
             password
             role
@@ -74,8 +78,28 @@ export default {
       this.user = getUserKyrios;
       this.userEdit = value;
     },
+    async displayDeleteModal(value) {
+      this.dialogDeleteUser = true;
+      const response = await this.$apollo.query({
+        query: gql`
+        query {
+          getUserKyrios(email: "${value}") {
+            firstname lastname email
+            password
+            role
+            creationDate
+          }
+        }`,
+      });
+      const { getUserKyrios } = response.data;
+      this.user = getUserKyrios;
+      this.userDelete = value;
+    },
     closeEditModalUser() {
       this.dialogEditUser = false;
+    },
+    closeDeleteModalUser() {
+      this.dialogDeleteUser = false;
     },
   },
 };

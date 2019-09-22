@@ -68,8 +68,8 @@ export default {
     };
   },
   methods: {
-    deleteModal(userEmail) {
-      this.$emit('displayDeleteModal', userEmail);
+    deleteModal(user) {
+      this.$emit('displayDeleteModal', user);
     },
     editModalUser(user) {
       this.$emit('editModalUser', user);
