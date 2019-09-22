@@ -4,8 +4,7 @@
   "license": "MIT",
   "main": "src/api.mjs",
   "engines": {
-    "node":  "10.16.1",
-    "yarn": ">= 1.7.0"
+    "node": "10.16.3"
   },
   "scripts": {
     "start": "node --experimental-modules .",
