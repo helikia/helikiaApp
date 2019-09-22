@@ -34,3 +34,10 @@ export const EDIT_USER = gql`
     }
   }
 `;
+export const DELETE_USER = gql`
+  mutation ($email: String!) {
+    deleteUser( email: $email) {
+      email
+    }
+  }
+`;

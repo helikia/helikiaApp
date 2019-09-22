@@ -3,7 +3,7 @@
     <v-dialog v-model="dialogEditUser" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <div class="headline">Modifier l'utilisateur {{ user.firstname }}</div>
+          <div class="headline">Modifier l'utilisateur {{ user.firstname }} {{ user.lastname }}</div>
         </v-card-title>
         <v-card-text>
           <v-container>

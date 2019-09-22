@@ -34,11 +34,18 @@ const resolvers = {
       };
 
       const { value: user } = await server.plugins.mongodb.UserKyrios.findOneAndUpdate(
-        { _id: _id },
+        { _id },
         { $set: { ...userKyrios } },
         { returnOriginal: false },
       );
 
+      return user;
+    },
+
+    deleteUser: async (_, { email }, { server }) => {
+      const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
+      const { _id } = userEmail;
+      const user = await server.plugins.mongodb.UserKyrios.findOneAndDelete({ _id: _id });
       return user;
     },
 
