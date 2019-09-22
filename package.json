@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "10.16.1",
-    "yarn": ">= 1.7.0"
+    "node": "10.16.3"
   },
   "scripts": {
     "start": "node --experimental-modules ./packages/api",
@@ -13,8 +12,8 @@
     "loadFixtures": "nodemon --experimental-modules ./packages/api/src/modules/mongodb/fixtures/fixtures.mjs",
     "build": "NODE_ENV=production vue-cli-service build ./packages/app/src/main.js --modern",
     "lint": "vue-cli-service lint",
-    "test:e2e": "vue-cli-service test:e2e",
-    "test:e2e:prod": "vue-cli-service test:e2e --headless",
+    "test:e2e": "vue-cli-service test:e2e ./packages/app/src/main.js",
+    "test:e2e:prod": "vue-cli-service test:e2e ./packages/app/src/main.js --headless",
     "test:unit": "vue-cli-service test:unit",
     "storybook:dev": "cd ./packages/storybook && vue-cli-service storybook:serve -p 6006 -c config/storybook"
   },
