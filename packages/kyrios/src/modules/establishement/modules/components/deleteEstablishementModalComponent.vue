@@ -1,13 +1,13 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="dialogDeleteUser" persistent max-width="600px">
+    <v-dialog v-model="dialogDeleteEstablishement" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <div class="headline">Suppression de l'utilisateur {{ user.firstname }} {{ user.lastname }}</div>
+          <div class="headline">Suppression de l'EHPAD </div>
         </v-card-title>
         <v-card-text>
           <v-container class="text-md-center">
-              Etes vous sur de vouloir supprimer l'utilisateur {{ user.firstname }} {{ user.lastname }}
+              Etes vous sur de vouloir supprimer l'EHPAD
           </v-container>
         </v-card-text>
         <v-card-actions>
@@ -22,12 +22,12 @@
 
 <script>
 import gql from 'graphql-tag';
-import { DELETE_USER } from '../../../../graphql/KyriosMutations';
+import { DELETE_ESTABLISHEMENT } from '../../../../graphql/KyriosMutations';
 
 export default {
-  name: 'DeleteUserModalComponent',
+  name: 'DeleteEstablishementModalComponent',
   props: {
-    dialogDeleteUser: {
+    dialogDeleteEstablishement: {
       type: Boolean,
       default: false,
     },
@@ -35,26 +35,21 @@ export default {
       type: String,
       default: '',
     },
-    user: {
-      type: Object,
-      default: () => {},
-    },
-  },
-  computed: {
-    noRender() {
-      return this.userDelete.length !== 0;
+    establishementId: {
+      type: String,
+      default: '',
     },
   },
   methods: {
     closeDialog() {
-      this.$emit('closeDeleteModalUser');
+      this.$emit('closeDeleteModalEstablishement');
     },
     async submitForm() {
       this.$emit('closeDeleteModalUser');
       await this.$apollo.mutate({
-        mutation: DELETE_USER,
+        mutation: DELETE_ESTABLISHEMENT,
         variables: {
-          email: this.user.email,
+          _id: this.user.email,
         },
       });
     },

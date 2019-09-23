@@ -23,7 +23,7 @@ const defaultOptions = {
   // Override default http link
   // link: authLink.concat(httpLink),
   // Override default cache
-  cache: new InMemoryCache(),
+  // cache: new InMemoryCache(),
   // Additional ApolloClient options
   // apollo: { ... }
   getAuth: () => {

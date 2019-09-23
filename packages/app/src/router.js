@@ -14,7 +14,7 @@ import EstablishementSingle from '../../kyrios/src/modules/establishement/pages/
 
 import UserSettings from '../../kyrios/src/modules/userSettings/pages/userSettingsPage.vue';
 
-import PageNotFound from '../../app/src/components/notFoundComponent.vue';
+import PageNotFound from './components/notFoundComponent.vue';
 
 Vue.use(Router);
 
@@ -51,15 +51,15 @@ const router = new Router({
           meta: { requiresAuth: true },
         },
         {
-          title: 'accountUsers',
-          path: '/kyrios/account-users',
-          component: AccountUsersList,
-          meta: { requiresAuth: true },
-        },
-        {
           title: 'SingleEstablishement',
           path: '/kyrios/etablissements/:id',
           component: EstablishementSingle,
+          meta: { requiresAuth: true },
+        },
+        {
+          title: 'accountUsers',
+          path: '/kyrios/account-users',
+          component: AccountUsersList,
           meta: { requiresAuth: true },
         },
         {

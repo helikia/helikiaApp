@@ -6,9 +6,7 @@
     "node": "10.16.3"
   },
   "scripts": {
-    "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
     "start": "APP_ENV=https://helikia-staging.herokuapp.com PORT=5000 node --experimental-modules ./packages/api",
-    "start:front": "node --experimental-modules ./packages/config/server/production.mjs",
     "serve": "APP_ENV=http://localhost vue-cli-service serve ./packages/app/src/main.js",
     "dev:back": "APP_ENV=http://localhost nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
     "loadFixtures": "nodemon --experimental-modules ./packages/api/src/modules/mongodb/fixtures/fixtures.mjs",

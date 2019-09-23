@@ -16,9 +16,13 @@
     </v-row>
     <v-row>
       <v-col :cols="12">
-        <ListComponent :allEstablishements="allEstablishements" />
+        <ListComponent :allEstablishements="allEstablishements" @deleteEhpad="deleteEhpad"/>
       </v-col>
     </v-row>
+    <DeleteEstablishementModalComponent
+      :dialogDeleteEstablishement="dialogDeleteEstablishement"
+      @closeDeleteModalEstablishement="closeDeleteModalEstablishement"
+    />
   </div>
 </template>
 
@@ -30,15 +34,25 @@ export default {
   name: 'etablishementPageList',
   components: {
     ListComponent,
+    DeleteEstablishementModalComponent: () => import('../modules/components/deleteEstablishementModalComponent'),
   },
   data() {
     return {
       allEstablishements: [],
+      dialogDeleteEstablishement: false,
     };
   },
   apollo: {
     allEstablishements: {
       query: GET_ESTABLISHEMENTS,
+    },
+  },
+  methods: {
+    closeDeleteModalEstablishement() {
+      this.dialogDeleteEstablishement = false;
+    },
+    async deleteEhpad() {
+      console.log('toto');
     },
   },
 };

@@ -3,9 +3,24 @@ import gql from 'graphql-tag';
 export const GET_ESTABLISHEMENTS = gql`
     query {
         allEstablishements {
+            _id
             name
             street
             cp
+        }
+    }
+`;
+
+
+export const GET_ESTABLISHEMENT = gql`
+    query ($id: ObjectId!){
+        getEstablishement (_id: $id) {
+            _id
+            name
+            phone
+            cp
+            pricing
+            categories
         }
     }
 `;

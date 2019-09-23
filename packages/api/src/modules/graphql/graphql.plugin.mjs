@@ -1,3 +1,4 @@
+import mongodb from 'mongodb';
 import ApolloServerHapi from 'apollo-server-hapi';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -8,6 +9,7 @@ const createToken = (email, secret, expiresIn) => jwt.sign({ email }, secret);
 const resolvers = {
   Query: {
     allEstablishements: (_, __, { server }) => server.plugins.mongodb.Establishement.find().toArray(),
+    getEstablishement: (_, { _id }, { server }) => server.plugins.mongodb.Establishement.findOne({ _id: new mongodb.ObjectID(_id) }),
     userKyrios: (_, __, { server }) => server.plugins.mongodb.UserKyrios.find().toArray(),
     me: (_, __, { server }) => server.plugins.mongodb.UserKyrios.find().toArray(),
     getUserKyrios: (_, { email }, { server }) => server.plugins.mongodb.UserKyrios.findOne({ email }),
@@ -48,6 +50,15 @@ const resolvers = {
       const user = await server.plugins.mongodb.UserKyrios.findOneAndDelete({ _id: _id });
       return user;
     },
+
+
+    // deleteEstablishement: async (_, { email }, { server }) => {
+    //   const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
+    //   const { _id } = userEmail;
+    //   const user = await server.plugins.mongodb.UserKyrios.findOneAndDelete({ _id: _id });
+    //   return user;
+    // },
+
 
     signinUserKyrios: async (_, { email, password }, { server }) => {
       const userEmail = await server.plugins.mongodb.UserKyrios.findOne({ email });
