@@ -9,7 +9,7 @@
       :items-per-page="100"
     >
       <template v-slot:item.action="{ item }">
-        <v-btn class="mt-0" height="0" width="0" min-width="0" :elevation="0" :to="`/kyrios/etablissements/ehpad/${item._id}`" @click="getEtablishementId(item._id)">
+        <v-btn class="mt-0" height="0" width="0" min-width="0" :elevation="0" @click="getEtablishementId(item)">
           <v-icon small class="mr-2">
           edit
         </v-icon>
@@ -63,9 +63,13 @@ export default {
     deleteEhpad(id) {
       this.$emit('deleteEhpad', id);
     },
-    getEtablishementId(id) {
-      EventBus.$emit('getEtablishementId', id);
+    getEtablishementId(item) {
+      this.$store.commit('establishementSelected', { id: item._id });
+      this.redirectTo(item.slug);
     },
+    redirectTo(slug) {
+      this.$router.push(`/kyrios/etablissements/ehpad/${slug}`);
+    }
   },
 };
 

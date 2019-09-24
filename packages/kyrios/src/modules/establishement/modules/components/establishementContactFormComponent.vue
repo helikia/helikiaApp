@@ -113,10 +113,8 @@ export default {
   name: 'EstablishementContactForm',
   props: {
     establishement: {
-      type: Object,
-      default() {
-        return {};
-      },
+        type: Array,
+        default: []
     },
   },
   data: () => ({

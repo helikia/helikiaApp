@@ -11,7 +11,7 @@
                 </v-row>
             </v-col>
         </v-row>
-        <v-group>
+        <div>
             <v-row>
                 <v-col :cols="3">
                     <v-autocomplete
@@ -37,7 +37,7 @@
                     ></v-textarea>
                 </v-col>
             </v-row>
-        </v-group>
+        </div>
         <v-btn>Ajouter une prestation</v-btn>
     </div>
 </template>

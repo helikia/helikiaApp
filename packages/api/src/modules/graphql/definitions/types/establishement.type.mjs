@@ -9,5 +9,6 @@ export default ApolloServerHapi.gql`
     phone: String
     categories: String
     pricing: String
+    slug: String!
   }
 `;

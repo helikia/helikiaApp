@@ -13,7 +13,7 @@
         </v-row>
         <v-row>
             <v-col :cols="3">
-                <v-group>
+                <div>
                     <h3 class="subtitle-2">
                         Hébergement temporaire
                     </h3>
@@ -41,11 +41,11 @@
                             />
                         </v-col>
                     </v-row>
-                </v-group>
+                </div>
             </v-col>
 
             <v-col :cols="3">
-                <v-group>
+                <div>
                     <h3 class="subtitle-2">
                         Hébergement long
                     </h3>
@@ -73,12 +73,12 @@
                             />
                         </v-col>
                     </v-row>
-                </v-group>
+                </div>
             </v-col>
 
 
             <v-col :cols="6">
-                <v-group>
+                <div>
                     <h3 class="subtitle-2">
                         Tarif dépendence TTC / jour / personne
                     </h3>
@@ -113,7 +113,7 @@
                         </v-col>
 
                     </v-row>
-                </v-group>
+                </div>
             </v-col>
 
         </v-row>

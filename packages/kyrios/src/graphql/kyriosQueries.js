@@ -7,6 +7,7 @@ export const GET_ESTABLISHEMENTS = gql`
             name
             street
             cp
+            slug
         }
     }
 `;

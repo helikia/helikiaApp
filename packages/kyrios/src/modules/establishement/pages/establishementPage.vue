@@ -35,7 +35,7 @@ export default {
   data: () => ({
     selected: ['private'],
     establishement: [],
-    establishementId: '5d68d3ebd8d0d9556d3a465d',
+    establishementId: '',
   }),
 
   async mounted() {
@@ -44,20 +44,18 @@ export default {
 
   methods: {
     async getEstablishement() {
-      EventBus.$on('getEtablishementId', (id) => {
-        this.establishementId = id;
-      });
+      this.establishementId = this.$store.state.establishementSelectedId;
       const response = await this.$apollo.query({
         query: gql`
           query {
             getEstablishement(_id: "${this.establishementId}") {
               _id
-                name
-                phone
-                cp
-                street
-                pricing
-                categories
+              name
+              phone
+              cp
+              street
+              pricing
+              categories
             }
           }`,
       });
@@ -65,6 +63,5 @@ export default {
       this.establishement = getEstablishement;
     },
   },
-
 };
 </script>;

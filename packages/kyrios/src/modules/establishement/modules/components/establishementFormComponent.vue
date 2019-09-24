@@ -48,10 +48,8 @@ export default {
 
   props: {
     establishement: {
-      type: Object,
-      default() {
-        return {};
-      },
+        type: Array,
+        default: []
     },
   },
 

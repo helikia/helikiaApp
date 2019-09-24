@@ -51,8 +51,9 @@ const router = new Router({
           meta: { requiresAuth: true },
         },
         {
+          name:'SingleEstablishement',
           title: 'SingleEstablishement',
-          path: '/kyrios/etablissements/:id',
+          path: '/kyrios/etablissements/ehpad/:slug',
           component: EstablishementSingle,
           meta: { requiresAuth: true },
         },
