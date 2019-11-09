@@ -10,6 +10,7 @@ let localConfig = {};
 try {
   // eslint-disable-next-line import/no-unresolved
   localConfig = requireConfigFile('local');
+  console.log(localConfig, 'localConfig');
 } catch (e) {
   // Don't care
 }

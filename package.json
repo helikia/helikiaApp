@@ -6,9 +6,9 @@
     "node": "10.16.3"
   },
   "scripts": {
-    "start": "node --experimental-modules ./packages/api",
-    "serve": "NODE_ENV=development vue-cli-service serve ./packages/app/src/main.js",
-    "dev:back": "NODE_ENV=development nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
+    "start": "APP_ENV=https://helikia-staging.herokuapp.com PORT=5000 node --experimental-modules ./packages/api",
+    "serve": "APP_ENV=http://localhost vue-cli-service serve ./packages/app/src/main.js",
+    "dev:back": "APP_ENV=http://localhost nodemon --inspect --experimental-modules ./packages/api --watch ./packages/api --ext mjs,js,jsx,json",
     "loadFixtures": "nodemon --experimental-modules ./packages/api/src/modules/mongodb/fixtures/fixtures.mjs",
     "build": "NODE_ENV=production vue-cli-service build ./packages/app/src/main.js --modern",
     "lint": "vue-cli-service lint",

@@ -4,16 +4,17 @@
       calculate-widths
       :headers="headers"
       :items="allEstablishements"
+      :item-key="allEstablishements._id"
       :search="search"
       :items-per-page="100"
     >
       <template v-slot:item.action="{ item }">
-        <v-btn height="0" width="0" min-width="0" :elevation="0" to="/kyrios/etablissements/1">
+        <v-btn class="mt-0" height="0" width="0" min-width="0" :elevation="0" @click="getEtablishementId(item)">
           <v-icon small class="mr-2">
           edit
         </v-icon>
         </v-btn>
-        <v-btn height="0" width="0" min-width="0" :elevation="0" to="/kyrios/etablissements/1">
+        <v-btn class="mt-0" height="0" width="0" min-width="0" :elevation="0" @click="deleteEhpad(item._id)">
           <v-icon small>
             delete
           </v-icon>
@@ -24,6 +25,8 @@
 </template>
 
 <script>
+import { EventBus } from '../../../../../../helpers/eventBus';
+
 export default {
   name: 'EstablishementListComponent',
   props: {
@@ -56,11 +59,23 @@ export default {
       },
     };
   },
+  methods: {
+    deleteEhpad(id) {
+      this.$emit('deleteEhpad', id);
+    },
+    getEtablishementId(item) {
+      this.$store.commit('establishementSelected', { id: item._id });
+      this.redirectTo(item.slug);
+    },
+    redirectTo(slug) {
+      this.$router.push(`/kyrios/etablissements/ehpad/${slug}`);
+    }
+  },
 };
 
 </script>
 <style lang="scss">
-.v-data-table td, .v-data-table th {
-    height: 55px;
-}
+  .v-data-table td, .v-data-table th {
+      height: 55px;
+  }
 </style>

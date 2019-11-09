@@ -14,5 +14,6 @@ export default ApolloServerHapi.gql`
     allEstablishements: [Establishement]
     userKyrios: [UserKyrios]
     getUserKyrios (email: String): UserKyrios
+    getEstablishement (_id: ObjectId): Establishement
   }
 `;

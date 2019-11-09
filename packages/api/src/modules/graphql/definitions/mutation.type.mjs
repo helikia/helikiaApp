@@ -1,9 +1,11 @@
 import ApolloServerHapi from 'apollo-server-hapi';
 
 import UserKyriosInput from './inputs/userKyrios.input';
+import EstablishementInput from './inputs/establishement.input';
 
 export default ApolloServerHapi.gql`
   ${UserKyriosInput}
+  ${EstablishementInput}
 
   type Mutation {
     upsertUserKyrios(firstname: String!, lastname: String!, email: String!, password: String!, creationDate: String!, role: String!): UserKyrios
